@@ -21,17 +21,22 @@
     "node": ">=6"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.18.0",
+    "babelify": "^7.3.0",
     "browserify": "^13.1.1",
     "envify": "^4.0.0",
-    "es2020": "^1.1.9",
+    "husky": "^0.11.9",
+    "standard": "^8.6.0",
     "uglify-js": "^2.7.5",
     "watchify": "^3.7.0"
   },
   "scripts": {
-    "bundle": "browserify -t envify -t es2020 index.js > bundle.js",
+    "bundle": "browserify -g [ babelify --presets es2015 ] -t envify index.js > bundle.js",
     "minify": "cat bundle.js | uglifyjs -mc > bundle.min.js",
     "build": "npm run bundle && npm run minify",
-    "start": "watchify -t envify -t es2020 index.js -o bundle.js"
+    "start": "watchify -g [ babelify --presets es2015 ] -t envify index.js -o bundle.js",
+    "lint": "standard",
+    "prepush": "npm run lint && npm run build"
   },
   "dependencies": {
     "global": "^4.3.1",
