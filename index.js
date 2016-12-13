@@ -10,7 +10,10 @@ const render = require('./lib/render')
 // state
 const state = {
 	testnet: true,
-	input: 'jannis@ethcore.io'
+	input: 'jannis@ethcore.io',
+	loading: false,
+	error: null,
+	data: null
 }
 
 // actions
@@ -28,7 +31,21 @@ const lookup = () => {
 	let req
 	if (util.isValidEmail(input)) req = _lookup({email: input})
 	else if (util.isValidAddress(input)) req = _lookup({address: input})
-	else return console.error('invalid input')
+	else return state.error = 'invalid input'
+
+	state.loading = true
+	req
+	.then((data) => {
+		state.data = data
+		state.loading = false
+		rerender()
+	})
+	.catch((err) => {
+		state.error = err.message
+		state.data = null
+		state.loading = false
+		rerender()
+	})
 }
 
 const actions = {
