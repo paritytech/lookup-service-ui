@@ -30,12 +30,14 @@ const lookup = () => {
   const input = state.input
   let req
   if (util.isValidEmail(input)) {
+    state.error = null
     req = _lookup({email: input})
   } else if (util.isValidAddress(input)) {
+    state.error = null
     req = _lookup({address: input})
   } else {
     state.error = 'invalid input'
-    return
+    return rerender()
   }
 
   state.loading = true
