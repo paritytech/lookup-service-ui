@@ -1,0 +1,28 @@
+
+/*
+  System Fonts
+  https://github.com/mrmrs/css-system-fonts
+*/
+.system-sans-serif {
+  font-family: -apple-system, BlinkMacSystemFont, /* MacOS and iOS */
+               'avenir next', avenir, /* MacOS and iOS */
+               'Segoe UI', /* Windows */
+               'lucida grande', /* Older MacOS */
+               'helvetica neue', helvetica, /* Older MacOS */
+               'Fira Sans', /* Firefox OS */
+               roboto, noto, /* Google stuff */
+               'Droid Sans', /* Old Google stuff */
+               cantarell, oxygen, ubuntu, /* Linux stuff */
+               'franklin gothic medium', 'century gothic', /* Windows stuff */
+               'Liberation Sans', /* Linux */
+               sans-serif; /* Everything else */
+}
+/*
+  References:
+
+  https://webkit.org/blog/3709/using-the-system-font-in-web-content/
+  https://en.wikipedia.org/wiki/Avenir_(typeface)
+  https://www.google.com/design/spec/style/typography.html#typography-typeface
+  https://core.trac.wordpress.org/ticket/36753#comment:85
+
+*/

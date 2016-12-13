@@ -5,7 +5,7 @@ const document = require('global/document')
 
 const _lookup = require('./lib/lookup')
 const util = require('./lib/util')
-const render = require('./lib/render')
+const render = require('./lib/ui')
 
 // state
 const state = {
@@ -39,8 +39,10 @@ const lookup = () => {
   }
 
   state.loading = true
+  rerender()
   req
   .then((data) => {
+    state.error = null
     state.data = data
     state.loading = false
     rerender()
