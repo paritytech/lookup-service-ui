@@ -32,7 +32,7 @@
     "watchify": "^3.7.0"
   },
   "scripts": {
-    "bundle": "browserify -p [ csjs-extractify -o bundle.css ] -g [ babelify --presets es2015 ] -t envify index.js > bundle.js",
+    "bundle": "env NODE_ENV=production browserify -p [ csjs-extractify -o bundle.css ] -g [ babelify --presets es2015 ] -t envify index.js > bundle.js",
     "minify": "cat bundle.js | uglifyjs -mc > bundle.min.js",
     "build": "npm run bundle && npm run minify",
     "start": "watchify -p [ csjs-extractify -o bundle.css ] -g [ babelify --presets es2015 ] -t envify index.js -o bundle.js",

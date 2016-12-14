@@ -4,7 +4,3 @@ Thumbs.db
 .nvm-version
 node_modules
 npm-debug.log
-
-bundle.js
-bundle.min.js
-bundle.css
