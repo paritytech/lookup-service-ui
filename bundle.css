@@ -14,19 +14,6 @@
 
 
 
-.columns_1XQJKa {
-  display: flex;
-}
-
-.columns_1XQJKa > * {
-  margin-left: .5rem;
-}
-.columns_1XQJKa > :first-child {
-  margin-left: 0;
-}
-
-
-
 .spinner_1Za72l {
   margin-top: 1rem;
   display: inline-block;
@@ -117,6 +104,19 @@
   border-radius: .3em;
 }
 .chip_jQDhz:first-child {
+  margin-left: 0;
+}
+
+
+
+.columns_1XQJKa {
+  display: flex;
+}
+
+.columns_1XQJKa > * {
+  margin-left: .5rem;
+}
+.columns_1XQJKa > :first-child {
   margin-left: 0;
 }
 

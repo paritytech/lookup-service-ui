@@ -32,10 +32,10 @@ var lookup = function lookup() {
   var req = void 0;
   if (util.isValidEmail(input)) {
     state.error = null;
-    req = _lookup({ email: input });
+    req = _lookup({ email: input }, state.testnet);
   } else if (util.isValidAddress(input)) {
     state.error = null;
-    req = _lookup({ address: input });
+    req = _lookup({ address: input }, state.testnet);
   } else {
     state.error = 'invalid input';
     return rerender();
@@ -75,7 +75,7 @@ var fetch = require('isomorphic-fetch');
 var qs = require('querystring');
 
 var lookup = function lookup(query, testnet) {
-  var url = "dev" === 'dev' ? 'http://localhost:' + 8443 + '/?' : 'https://id.parity.io:' + (testnet ? 8443 : 443) + '/?';
+  var url = "production" === 'dev' ? 'http://localhost:' + 8443 + '/?' : 'https://id.parity.io:' + (testnet ? 8443 : 443) + '/?';
 
   return fetch(url + qs.stringify(query)).then(function (res) {
     if (!res.ok) throw new Error(res.statusText);
