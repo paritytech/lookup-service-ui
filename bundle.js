@@ -68,7 +68,7 @@ var rerender = function rerender() {
   yo.update(root, render(state, actions));
 };
 
-},{"./lib/lookup":2,"./lib/ui":8,"./lib/util":11,"global/document":27,"yo-yo":42}],2:[function(require,module,exports){
+},{"./lib/lookup":2,"./lib/ui":8,"./lib/util":11,"global/document":27,"yo-yo":43}],2:[function(require,module,exports){
 'use strict';
 
 var fetch = require('isomorphic-fetch');
@@ -88,7 +88,7 @@ module.exports = lookup;
 },{"isomorphic-fetch":32,"querystring":39}],3:[function(require,module,exports){
 'use strict';
 
-var _templateObject = _taggedTemplateLiteral(['\n\n.container {\n  margin-top: 2rem;\n}\n\n.address {\n  display: inline-block;\n  padding: .3em .4em;\n  line-height: 1;\n  color: #333;\n  text-decoration: none;\n  background-color: #ddd;\n  border-radius: .3em;\n}\n\n.address:hover {\n  background-color: #eee;\n}\n\n.heading {\n  font-size: 120%;\n  font-weight: inherit;\n}\n\n.tokens {\n  margin: .5rem 0 0 0;\n}\n\n.tokens .chip {\n  font-size: 110%;\n  color: white;\n  background-color: #3498db;\n}\n\n.badges {\n  margin: .5rem 0 0 0;\n}\n\n.badges .chip {\n  color: white;\n  background-color: #27ae60;\n}\n.badges .chip:hover {\n  background-color: #37be70;\n}\n\n.badges a {\n  color: white;\n  text-decoration: none;\n}\n\n.chip {\n  display: inline-block;\n  margin-left: .5rem;\n  padding: .2em .4em;\n  border-radius: .3em;\n}\n.chip:first-child {\n  margin-left: 0;\n}\n\n'], ['\n\n.container {\n  margin-top: 2rem;\n}\n\n.address {\n  display: inline-block;\n  padding: .3em .4em;\n  line-height: 1;\n  color: #333;\n  text-decoration: none;\n  background-color: #ddd;\n  border-radius: .3em;\n}\n\n.address:hover {\n  background-color: #eee;\n}\n\n.heading {\n  font-size: 120%;\n  font-weight: inherit;\n}\n\n.tokens {\n  margin: .5rem 0 0 0;\n}\n\n.tokens .chip {\n  font-size: 110%;\n  color: white;\n  background-color: #3498db;\n}\n\n.badges {\n  margin: .5rem 0 0 0;\n}\n\n.badges .chip {\n  color: white;\n  background-color: #27ae60;\n}\n.badges .chip:hover {\n  background-color: #37be70;\n}\n\n.badges a {\n  color: white;\n  text-decoration: none;\n}\n\n.chip {\n  display: inline-block;\n  margin-left: .5rem;\n  padding: .2em .4em;\n  border-radius: .3em;\n}\n.chip:first-child {\n  margin-left: 0;\n}\n\n']);
+var _templateObject = _taggedTemplateLiteral(['\n\n.container {\n  margin-top: 2rem;\n}\n\n.address {\n  display: inline-block;\n  padding: .3em .4em;\n  line-height: 1;\n  color: #333;\n  text-decoration: none;\n  background-color: #ddd;\n  border-radius: .3em;\n}\n\n.address:hover {\n  background-color: #eee;\n}\n\n.heading {\n  font-size: 120%;\n  font-weight: inherit;\n}\n\n.tokens {\n  margin: .5rem 0 0 0;\n}\n\n.tokens .chip {\n  background-color: #3498db;\n}\n.tokens .chip img {\n  border-color: #3498db;\n}\n.tokens code {\n  font-size: 110%;\n}\n\n.badges {\n  margin: .5rem 0 0 0;\n}\n\n.badges a {\n  color: white;\n  text-decoration: none;\n}\n\n.chip {\n  position: relative;\n  display: inline-block;\n  margin-left: 1rem;\n  padding: .1em .4em .1em 2.2em;\n  color: #fff;\n  border-radius: .3em;\n  background-color: #27ae60;\n}\n.chip:first-child {\n  margin-left: 0;\n}\n\n.chip img {\n  position: absolute;\n  top: 50%; left: 0;\n  margin-top: -1.1em;\n  margin-left: -.2em;\n  padding: .2em;\n  width: 1.7em;\n  height: 1.7em;\n  border: .1em solid #27ae60;\n  border-radius: 100%;\n  background-color: white;\n}\n\n'], ['\n\n.container {\n  margin-top: 2rem;\n}\n\n.address {\n  display: inline-block;\n  padding: .3em .4em;\n  line-height: 1;\n  color: #333;\n  text-decoration: none;\n  background-color: #ddd;\n  border-radius: .3em;\n}\n\n.address:hover {\n  background-color: #eee;\n}\n\n.heading {\n  font-size: 120%;\n  font-weight: inherit;\n}\n\n.tokens {\n  margin: .5rem 0 0 0;\n}\n\n.tokens .chip {\n  background-color: #3498db;\n}\n.tokens .chip img {\n  border-color: #3498db;\n}\n.tokens code {\n  font-size: 110%;\n}\n\n.badges {\n  margin: .5rem 0 0 0;\n}\n\n.badges a {\n  color: white;\n  text-decoration: none;\n}\n\n.chip {\n  position: relative;\n  display: inline-block;\n  margin-left: 1rem;\n  padding: .1em .4em .1em 2.2em;\n  color: #fff;\n  border-radius: .3em;\n  background-color: #27ae60;\n}\n.chip:first-child {\n  margin-left: 0;\n}\n\n.chip img {\n  position: absolute;\n  top: 50%; left: 0;\n  margin-top: -1.1em;\n  margin-left: -.2em;\n  padding: .2em;\n  width: 1.7em;\n  height: 1.7em;\n  border: .1em solid #27ae60;\n  border-radius: 100%;\n  background-color: white;\n}\n\n']);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -99,14 +99,15 @@ module.exports = css(_templateObject);
 'use strict';
 
 var _templateObject = _taggedTemplateLiteral(['\n      <a\n        class="', '"\n        href="', '"\n        target="_blank"\n      >\n        <code>', '</code>\n      </a>\n  '], ['\n      <a\n        class="', '"\n        href="', '"\n        target="_blank"\n      >\n        <code>', '</code>\n      </a>\n  ']),
-    _templateObject2 = _taggedTemplateLiteral(['\n    <li class="', '">\n      <code>', '</code>\n      <code><abbr title="', '">', '</abbr></code>\n    </li>\n  '], ['\n    <li class="', '">\n      <code>', '</code>\n      <code><abbr title="', '">', '</abbr></code>\n    </li>\n  ']),
-    _templateObject3 = _taggedTemplateLiteral(['\n    <li class="', '">\n      <a\n        href="', '"\n        target="_blank"\n      >\n        <abbr title="', '">', '</abbr>\n      </a>\n    </li>\n  '], ['\n    <li class="', '">\n      <a\n        href="', '"\n        target="_blank"\n      >\n        <abbr title="', '">', '</abbr>\n      </a>\n    </li>\n  ']),
+    _templateObject2 = _taggedTemplateLiteral(['\n    <li class="', '">\n      <img src="', '" />\n      <code>', '</code>\n      <code><abbr title="', '">', '</abbr></code>\n    </li>\n  '], ['\n    <li class="', '">\n      <img src="', '" />\n      <code>', '</code>\n      <code><abbr title="', '">', '</abbr></code>\n    </li>\n  ']),
+    _templateObject3 = _taggedTemplateLiteral(['\n    <li class="', '">\n      <a\n        href="', '"\n        target="_blank"\n      >\n        <img src="', '" />\n        <abbr title="', '">', '</abbr>\n      </a>\n    </li>\n  '], ['\n    <li class="', '">\n      <a\n        href="', '"\n        target="_blank"\n      >\n        <img src="', '" />\n        <abbr title="', '">', '</abbr>\n      </a>\n    </li>\n  ']),
     _templateObject4 = _taggedTemplateLiteral(['\n    <div class="', '">\n      <h1 class="', '">Address</h1>\n      ', '\n      <h1 class="', '">Tokens</h1>\n      <ul class="', '">\n        ', '\n      </ul>\n      <h1 class="', '">Badges</h1>\n      <ul class="', '">\n        ', '\n      </ul>\n    </div>\n  '], ['\n    <div class="', '">\n      <h1 class="', '">Address</h1>\n      ', '\n      <h1 class="', '">Tokens</h1>\n      <ul class="', '">\n        ', '\n      </ul>\n      <h1 class="', '">Badges</h1>\n      <ul class="', '">\n        ', '\n      </ul>\n    </div>\n  ']);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 var yo = require('yo-yo');
 var roundTo = require('round-to');
+var rawgit = require('rawgit-url-formatter');
 
 var styles = require('./data.csjs.js');
 
@@ -124,11 +125,11 @@ var render = function render(state, actions) {
   var renderedAddress = yo(_templateObject, styles.address, etherscanLink(address, state.testnet), address);
 
   var renderedTokens = tokens.map(function (token) {
-    return yo(_templateObject2, styles.chip, roundTo(parseFloat(token.balance), 5), token.name, token.TLA);
+    return yo(_templateObject2, styles.chip, token.img ? rawgit(token.img).cdn : null, roundTo(parseFloat(token.balance), 5), token.name, token.TLA);
   });
 
   var renderedBadges = badges.map(function (badge) {
-    return yo(_templateObject3, styles.chip, etherscanLink(badge.address, state.testnet), badge.address, badge.title);
+    return yo(_templateObject3, styles.chip, etherscanLink(badge.address, state.testnet), badge.img ? rawgit(badge.img).cdn : null, badge.address, badge.title);
   });
 
   return yo(_templateObject4, styles.container, styles.heading, renderedAddress, styles.heading, styles.tokens, renderedTokens, styles.heading, styles.badges, renderedBadges);
@@ -136,7 +137,7 @@ var render = function render(state, actions) {
 
 module.exports = render;
 
-},{"../util":11,"./data.csjs.js":3,"round-to":40,"yo-yo":42}],5:[function(require,module,exports){
+},{"../util":11,"./data.csjs.js":3,"rawgit-url-formatter":40,"round-to":41,"yo-yo":43}],5:[function(require,module,exports){
 'use strict';
 
 var _templateObject = _taggedTemplateLiteral(['\n\n.columns {\n  display: flex;\n}\n\n.columns > * {\n  margin-left: .5rem;\n}\n.columns > :first-child {\n  margin-left: 0;\n}\n\n'], ['\n\n.columns {\n  display: flex;\n}\n\n.columns > * {\n  margin-left: .5rem;\n}\n.columns > :first-child {\n  margin-left: 0;\n}\n\n']);
@@ -172,7 +173,7 @@ var render = function render(state, actions) {
 
 module.exports = render;
 
-},{"./form.csjs.js":5,"yo-yo":42}],7:[function(require,module,exports){
+},{"./form.csjs.js":5,"yo-yo":43}],7:[function(require,module,exports){
 'use strict';
 
 var _templateObject = _taggedTemplateLiteral(['\n\n.container {\n  margin: 0 auto;\n  max-width: 30rem;\n  text-align: center;\n}\n\n.logo {\n  display: inline-block;\n  margin: 0 auto 1rem auto;\n  max-width: 5rem;\n}\n\n'], ['\n\n.container {\n  margin: 0 auto;\n  max-width: 30rem;\n  text-align: center;\n}\n\n.logo {\n  display: inline-block;\n  margin: 0 auto 1rem auto;\n  max-width: 5rem;\n}\n\n']);
@@ -202,7 +203,7 @@ var render = function render(state, actions) {
 
 module.exports = render;
 
-},{"./data":4,"./form":6,"./index.csjs.js":7,"./status":10,"yo-yo":42}],9:[function(require,module,exports){
+},{"./data":4,"./form":6,"./index.csjs.js":7,"./status":10,"yo-yo":43}],9:[function(require,module,exports){
 'use strict';
 
 var _templateObject = _taggedTemplateLiteral(['\n\n.spinner {\n  margin-top: 1rem;\n  display: inline-block;\n  width: 2em;\n  height: 2em;\n}\n\n.spinner > div {\n  width: 100%;\n  height: 100%;\n  background-color: #3498db;\n  border-radius: 100%;\n  -webkit-animation: spinning .6s infinite ease-out;\n  animation: spinning .6s infinite ease-out;\n}\n\n@keyframes spinning {\n  0% {\n    -webkit-transform: scale(0);\n    transform: scale(0);\n  }\n  30% {\n    opacity: 1;\n  }\n  100% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 0;\n  }\n}\n\n'], ['\n\n.spinner {\n  margin-top: 1rem;\n  display: inline-block;\n  width: 2em;\n  height: 2em;\n}\n\n.spinner > div {\n  width: 100%;\n  height: 100%;\n  background-color: #3498db;\n  border-radius: 100%;\n  -webkit-animation: spinning .6s infinite ease-out;\n  animation: spinning .6s infinite ease-out;\n}\n\n@keyframes spinning {\n  0% {\n    -webkit-transform: scale(0);\n    transform: scale(0);\n  }\n  30% {\n    opacity: 1;\n  }\n  100% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 0;\n  }\n}\n\n']);
@@ -230,7 +231,7 @@ var render = function render(state, actions) {
 
 module.exports = render;
 
-},{"./status.csjs.js":9,"yo-yo":42}],11:[function(require,module,exports){
+},{"./status.csjs.js":9,"yo-yo":43}],11:[function(require,module,exports){
 'use strict';
 
 var isValidEmail = function isValidEmail(str) {
@@ -1128,7 +1129,7 @@ module.exports = Number.isFinite || function (val) {
 require('whatwg-fetch');
 module.exports = self.fetch.bind(self);
 
-},{"whatwg-fetch":41}],33:[function(require,module,exports){
+},{"whatwg-fetch":42}],33:[function(require,module,exports){
 'use strict';
 // Create a range object for efficently rendering strings to elements.
 
@@ -2075,6 +2076,40 @@ exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
 
 },{"./decode":37,"./encode":38}],40:[function(require,module,exports){
+/*
+* This package edit the url-formatter of rawgit.
+* The original source code is https://github.com/rgrove/rawgit/blob/master/public/js/url-formatter.js
+*/
+"use strict";
+
+var REGEX_GIST_URL = /^(https?):\/\/gist\.github(?:usercontent)?\.com\/(.+?\/[0-9a-f]+\/raw\/(?:[0-9a-f]+\/)?.+\..+)$/i;
+var REGEX_RAW_URL = /^(https?):\/\/raw\.github(?:usercontent)?\.com\/([^\/]+\/[^\/]+\/[^\/]+|[0-9A-Za-z-]+\/[0-9a-f]+\/raw)\/(.+\..+)/i;
+var REGEX_REPO_URL = /^(https?):\/\/github\.com\/(.+?)\/(.+?)\/(?:(?:blob|raw)\/)?(.+?\/.+)/i;
+
+var cdnDomain = 'cdn.rawgit.com';
+var devDomain = 'rawgit.com';
+
+module.exports = function (url) {
+	var result = {};
+
+	if (REGEX_RAW_URL.test(url)) {
+		result.dev = url.replace(REGEX_RAW_URL, '$1://' + devDomain + '/$2/$3');
+		result.cdn = url.replace(REGEX_RAW_URL, '$1://' + cdnDomain + '/$2/$3');
+	} else if (REGEX_REPO_URL.test(url)) {
+		result.dev = url.replace(REGEX_REPO_URL, '$1://' + devDomain + '/$2/$3/$4');
+		result.cdn = url.replace(REGEX_REPO_URL, '$1://' + cdnDomain + '/$2/$3/$4');
+	} else if (REGEX_GIST_URL.test(url)) {
+		result.dev = url.replace(REGEX_GIST_URL, '$1://' + devDomain + '/$2');
+		result.cdn = url.replace(REGEX_GIST_URL, '$1://' + cdnDomain + '/$2');
+	} else {
+		result.dev = url;
+		result.cdn = url;
+	}
+
+	return result;
+};
+
+},{}],41:[function(require,module,exports){
 'use strict';
 
 var numberIsInteger = require('number-is-integer');
@@ -2099,7 +2134,7 @@ var fn = module.exports = round.bind(null, 'round');
 fn.up = round.bind(null, 'ceil');
 fn.down = round.bind(null, 'floor');
 
-},{"number-is-integer":34}],41:[function(require,module,exports){
+},{"number-is-integer":34}],42:[function(require,module,exports){
 'use strict';
 
 (function (self) {
@@ -2556,7 +2591,7 @@ fn.down = round.bind(null, 'floor');
   self.fetch.polyfill = true;
 })(typeof self !== 'undefined' ? self : undefined);
 
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 'use strict';
 
 var bel = require('bel'); // turns template tag into DOM elements
@@ -2598,7 +2633,7 @@ module.exports.update = function (fromNode, toNode, opts) {
   }
 };
 
-},{"./update-events.js":43,"bel":12,"morphdom":33}],43:[function(require,module,exports){
+},{"./update-events.js":44,"bel":12,"morphdom":33}],44:[function(require,module,exports){
 'use strict';
 
 module.exports = [
