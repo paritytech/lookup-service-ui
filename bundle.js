@@ -11,7 +11,7 @@ var render = require('./lib/ui');
 // state
 var state = {
   testnet: true,
-  input: 'jannis@ethcore.io',
+  input: '',
   loading: false,
   error: null,
   data: null
@@ -68,7 +68,7 @@ var rerender = function rerender() {
   yo.update(root, render(state, actions));
 };
 
-},{"./lib/lookup":2,"./lib/ui":8,"./lib/util":11,"global/document":27,"yo-yo":43}],2:[function(require,module,exports){
+},{"./lib/lookup":2,"./lib/ui":8,"./lib/util":11,"global/document":28,"yo-yo":45}],2:[function(require,module,exports){
 'use strict';
 
 var fetch = require('isomorphic-fetch');
@@ -85,20 +85,20 @@ var lookup = function lookup(query, testnet) {
 
 module.exports = lookup;
 
-},{"isomorphic-fetch":32,"querystring":39}],3:[function(require,module,exports){
+},{"isomorphic-fetch":33,"querystring":40}],3:[function(require,module,exports){
 'use strict';
 
-var _templateObject = _taggedTemplateLiteral(['\n\n.container {\n  margin-top: 2rem;\n}\n\n.address {\n  display: inline-block;\n  padding: .3em .4em;\n  line-height: 1;\n  color: #333;\n  text-decoration: none;\n  background-color: #ddd;\n  border-radius: .3em;\n}\n\n.address:hover {\n  background-color: #eee;\n}\n\n.heading {\n  font-size: 120%;\n  font-weight: inherit;\n}\n\n.tokens {\n  margin: .5rem 0 0 0;\n}\n\n.tokens .chip {\n  background-color: #3498db;\n}\n.tokens .chip img {\n  border-color: #3498db;\n}\n.tokens code {\n  font-size: 110%;\n}\n\n.badges {\n  margin: .5rem 0 0 0;\n}\n\n.badges a {\n  color: white;\n  text-decoration: none;\n}\n\n.chip {\n  position: relative;\n  display: inline-block;\n  margin-left: 1rem;\n  padding: .1em .4em .1em 2.2em;\n  color: #fff;\n  border-radius: .3em;\n  background-color: #27ae60;\n}\n.chip:first-child {\n  margin-left: 0;\n}\n\n.chip img {\n  position: absolute;\n  top: 50%; left: 0;\n  margin-top: -1.1em;\n  margin-left: -.2em;\n  padding: .2em;\n  width: 1.7em;\n  height: 1.7em;\n  border: .1em solid #27ae60;\n  border-radius: 100%;\n  background-color: white;\n}\n\n'], ['\n\n.container {\n  margin-top: 2rem;\n}\n\n.address {\n  display: inline-block;\n  padding: .3em .4em;\n  line-height: 1;\n  color: #333;\n  text-decoration: none;\n  background-color: #ddd;\n  border-radius: .3em;\n}\n\n.address:hover {\n  background-color: #eee;\n}\n\n.heading {\n  font-size: 120%;\n  font-weight: inherit;\n}\n\n.tokens {\n  margin: .5rem 0 0 0;\n}\n\n.tokens .chip {\n  background-color: #3498db;\n}\n.tokens .chip img {\n  border-color: #3498db;\n}\n.tokens code {\n  font-size: 110%;\n}\n\n.badges {\n  margin: .5rem 0 0 0;\n}\n\n.badges a {\n  color: white;\n  text-decoration: none;\n}\n\n.chip {\n  position: relative;\n  display: inline-block;\n  margin-left: 1rem;\n  padding: .1em .4em .1em 2.2em;\n  color: #fff;\n  border-radius: .3em;\n  background-color: #27ae60;\n}\n.chip:first-child {\n  margin-left: 0;\n}\n\n.chip img {\n  position: absolute;\n  top: 50%; left: 0;\n  margin-top: -1.1em;\n  margin-left: -.2em;\n  padding: .2em;\n  width: 1.7em;\n  height: 1.7em;\n  border: .1em solid #27ae60;\n  border-radius: 100%;\n  background-color: white;\n}\n\n']);
+var _templateObject = _taggedTemplateLiteral(['\n\n.container {\n  margin-top: 2rem;\n}\n\n.address {\n  display: inline-block;\n  padding: .3em .4em;\n  vertical-align: middle;\n  line-height: 1;\n  color: #333;\n  text-decoration: none;\n  background-color: #ddd;\n  border-radius: .3em;\n}\n\n.address:hover {\n  background-color: #eee;\n}\n\n.copy {\n  margin-top: 0;\n  vertical-align: middle;\n  width: auto;\n  max-width: none;\n  font-size: 80%;\n  opacity: .7;\n}\n.copy:hover, .copy:active {\n  opacity: 1;\n}\n\n.heading {\n  font-size: 120%;\n  font-weight: inherit;\n}\n\n.tokens {\n  margin: .5rem 0 0 0;\n}\n\n.tokens .chip {\n  background-color: #3498db;\n}\n.tokens .chip img {\n  border-color: #3498db;\n}\n.tokens code {\n  font-size: 110%;\n}\n\n.badges {\n  margin: .5rem 0 0 0;\n}\n\n.badges a {\n  color: white;\n  text-decoration: none;\n}\n\n.chip {\n  position: relative;\n  display: inline-block;\n  margin-left: 1rem;\n  padding: .1em .4em .1em 2.2em;\n  color: #fff;\n  border-radius: .3em;\n  background-color: #27ae60;\n}\n.chip:first-child {\n  margin-left: 0;\n}\n\n.chip img {\n  position: absolute;\n  top: 50%; left: 0;\n  margin-top: -1.1em;\n  margin-left: -.2em;\n  padding: .2em;\n  width: 1.7em;\n  height: 1.7em;\n  border: .1em solid #27ae60;\n  border-radius: 100%;\n  background-color: white;\n}\n\n'], ['\n\n.container {\n  margin-top: 2rem;\n}\n\n.address {\n  display: inline-block;\n  padding: .3em .4em;\n  vertical-align: middle;\n  line-height: 1;\n  color: #333;\n  text-decoration: none;\n  background-color: #ddd;\n  border-radius: .3em;\n}\n\n.address:hover {\n  background-color: #eee;\n}\n\n.copy {\n  margin-top: 0;\n  vertical-align: middle;\n  width: auto;\n  max-width: none;\n  font-size: 80%;\n  opacity: .7;\n}\n.copy:hover, .copy:active {\n  opacity: 1;\n}\n\n.heading {\n  font-size: 120%;\n  font-weight: inherit;\n}\n\n.tokens {\n  margin: .5rem 0 0 0;\n}\n\n.tokens .chip {\n  background-color: #3498db;\n}\n.tokens .chip img {\n  border-color: #3498db;\n}\n.tokens code {\n  font-size: 110%;\n}\n\n.badges {\n  margin: .5rem 0 0 0;\n}\n\n.badges a {\n  color: white;\n  text-decoration: none;\n}\n\n.chip {\n  position: relative;\n  display: inline-block;\n  margin-left: 1rem;\n  padding: .1em .4em .1em 2.2em;\n  color: #fff;\n  border-radius: .3em;\n  background-color: #27ae60;\n}\n.chip:first-child {\n  margin-left: 0;\n}\n\n.chip img {\n  position: absolute;\n  top: 50%; left: 0;\n  margin-top: -1.1em;\n  margin-left: -.2em;\n  padding: .2em;\n  width: 1.7em;\n  height: 1.7em;\n  border: .1em solid #27ae60;\n  border-radius: 100%;\n  background-color: white;\n}\n\n']);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 var css = require('csjs');
 module.exports = css(_templateObject);
 
-},{"csjs":16}],4:[function(require,module,exports){
+},{"csjs":17}],4:[function(require,module,exports){
 'use strict';
 
-var _templateObject = _taggedTemplateLiteral(['\n      <a\n        class="', '"\n        href="', '"\n        target="_blank"\n      >\n        <code>', '</code>\n      </a>\n  '], ['\n      <a\n        class="', '"\n        href="', '"\n        target="_blank"\n      >\n        <code>', '</code>\n      </a>\n  ']),
+var _templateObject = _taggedTemplateLiteral(['\n      <div>\n        <a\n          class="', '"\n          href="', '"\n          target="_blank"\n        >\n          <code>', '</code>\n        </a>\n        <button\n          class="', '"\n          onclick=', '\n        >copy</button>\n      </div>\n  '], ['\n      <div>\n        <a\n          class="', '"\n          href="', '"\n          target="_blank"\n        >\n          <code>', '</code>\n        </a>\n        <button\n          class="', '"\n          onclick=', '\n        >copy</button>\n      </div>\n  ']),
     _templateObject2 = _taggedTemplateLiteral(['\n    <li class="', '">\n      <img src="', '" />\n      <code>', '</code>\n      <code><abbr title="', '">', '</abbr></code>\n    </li>\n  '], ['\n    <li class="', '">\n      <img src="', '" />\n      <code>', '</code>\n      <code><abbr title="', '">', '</abbr></code>\n    </li>\n  ']),
     _templateObject3 = _taggedTemplateLiteral(['\n    <li class="', '">\n      <a\n        href="', '"\n        target="_blank"\n      >\n        <img src="', '" />\n        <abbr title="', '">', '</abbr>\n      </a>\n    </li>\n  '], ['\n    <li class="', '">\n      <a\n        href="', '"\n        target="_blank"\n      >\n        <img src="', '" />\n        <abbr title="', '">', '</abbr>\n      </a>\n    </li>\n  ']),
     _templateObject4 = _taggedTemplateLiteral(['\n    <div class="', '">\n      <h1 class="', '">Address</h1>\n      ', '\n      <h1 class="', '">Tokens</h1>\n      <ul class="', '">\n        ', '\n      </ul>\n      <h1 class="', '">Badges</h1>\n      <ul class="', '">\n        ', '\n      </ul>\n    </div>\n  '], ['\n    <div class="', '">\n      <h1 class="', '">Address</h1>\n      ', '\n      <h1 class="', '">Tokens</h1>\n      <ul class="', '">\n        ', '\n      </ul>\n      <h1 class="', '">Badges</h1>\n      <ul class="', '">\n        ', '\n      </ul>\n    </div>\n  ']);
@@ -106,6 +106,7 @@ var _templateObject = _taggedTemplateLiteral(['\n      <a\n        class="', '"\
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 var yo = require('yo-yo');
+var copy = require('copy-to-clipboard');
 var roundTo = require('round-to');
 var rawgit = require('rawgit-url-formatter');
 
@@ -122,7 +123,11 @@ var render = function render(state, actions) {
       badges = _state$data.badges;
 
 
-  var renderedAddress = yo(_templateObject, styles.address, etherscanLink(address, state.testnet), address);
+  var copyOnClick = function copyOnClick() {
+    copy(address);
+  };
+
+  var renderedAddress = yo(_templateObject, styles.address, etherscanLink(address, state.testnet), address, styles.copy, copyOnClick);
 
   var renderedTokens = tokens.map(function (token) {
     return yo(_templateObject2, styles.chip, token.img ? rawgit(token.img).cdn : null, roundTo(parseFloat(token.balance), 5), token.name, token.TLA);
@@ -137,7 +142,7 @@ var render = function render(state, actions) {
 
 module.exports = render;
 
-},{"../util":11,"./data.csjs.js":3,"rawgit-url-formatter":40,"round-to":41,"yo-yo":43}],5:[function(require,module,exports){
+},{"../util":11,"./data.csjs.js":3,"copy-to-clipboard":14,"rawgit-url-formatter":41,"round-to":42,"yo-yo":45}],5:[function(require,module,exports){
 'use strict';
 
 var _templateObject = _taggedTemplateLiteral(['\n\n.columns {\n  display: flex;\n}\n\n.columns > * {\n  margin-left: .5rem;\n}\n.columns > :first-child {\n  margin-left: 0;\n}\n\n'], ['\n\n.columns {\n  display: flex;\n}\n\n.columns > * {\n  margin-left: .5rem;\n}\n.columns > :first-child {\n  margin-left: 0;\n}\n\n']);
@@ -147,7 +152,7 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 var css = require('csjs');
 module.exports = css(_templateObject);
 
-},{"csjs":16}],6:[function(require,module,exports){
+},{"csjs":17}],6:[function(require,module,exports){
 'use strict';
 
 var _templateObject = _taggedTemplateLiteral(['\n    <div>\n      <input\n        type="text" value="', '"\n        placeholder="email or address"\n        onchange=', '\n        onkeypress=', '\n        onblur=', '\n      />\n      <div class="', '">\n        <select\n          aria-label="chain"\n          onchange=', '\n        >\n          <option\n            value="mainnet" selected="', '"\n          >Mainnet</option>\n          <option\n            value="testnet" selected="', '"\n          >Testnet</option>\n        </select>\n        <button\n          className="lookup" onclick=', '\n        >Lookup</button>\n      </div>\n    </div>\n  '], ['\n    <div>\n      <input\n        type="text" value="', '"\n        placeholder="email or address"\n        onchange=', '\n        onkeypress=', '\n        onblur=', '\n      />\n      <div class="', '">\n        <select\n          aria-label="chain"\n          onchange=', '\n        >\n          <option\n            value="mainnet" selected="', '"\n          >Mainnet</option>\n          <option\n            value="testnet" selected="', '"\n          >Testnet</option>\n        </select>\n        <button\n          className="lookup" onclick=', '\n        >Lookup</button>\n      </div>\n    </div>\n  ']);
@@ -173,7 +178,7 @@ var render = function render(state, actions) {
 
 module.exports = render;
 
-},{"./form.csjs.js":5,"yo-yo":43}],7:[function(require,module,exports){
+},{"./form.csjs.js":5,"yo-yo":45}],7:[function(require,module,exports){
 'use strict';
 
 var _templateObject = _taggedTemplateLiteral(['\n\n.container {\n  margin: 0 auto;\n  max-width: 30rem;\n  text-align: center;\n}\n\n.logo {\n  display: inline-block;\n  margin: 0 auto 1rem auto;\n  max-width: 5rem;\n}\n\n'], ['\n\n.container {\n  margin: 0 auto;\n  max-width: 30rem;\n  text-align: center;\n}\n\n.logo {\n  display: inline-block;\n  margin: 0 auto 1rem auto;\n  max-width: 5rem;\n}\n\n']);
@@ -183,7 +188,7 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 var css = require('csjs');
 module.exports = css(_templateObject);
 
-},{"csjs":16}],8:[function(require,module,exports){
+},{"csjs":17}],8:[function(require,module,exports){
 'use strict';
 
 var _templateObject = _taggedTemplateLiteral(['\n  <div className="system-sans-serif ', '">\n    <img className="', '" src="logo.svg" alt="Parity Logo" />\n    ', '\n    ', '\n    ', '\n  </div>\n'], ['\n  <div className="system-sans-serif ', '">\n    <img className="', '" src="logo.svg" alt="Parity Logo" />\n    ', '\n    ', '\n    ', '\n  </div>\n']);
@@ -203,7 +208,7 @@ var render = function render(state, actions) {
 
 module.exports = render;
 
-},{"./data":4,"./form":6,"./index.csjs.js":7,"./status":10,"yo-yo":43}],9:[function(require,module,exports){
+},{"./data":4,"./form":6,"./index.csjs.js":7,"./status":10,"yo-yo":45}],9:[function(require,module,exports){
 'use strict';
 
 var _templateObject = _taggedTemplateLiteral(['\n\n.spinner {\n  margin-top: 1rem;\n  display: inline-block;\n  width: 2em;\n  height: 2em;\n}\n\n.spinner > div {\n  width: 100%;\n  height: 100%;\n  background-color: #3498db;\n  border-radius: 100%;\n  -webkit-animation: spinning .6s infinite ease-out;\n  animation: spinning .6s infinite ease-out;\n}\n\n@keyframes spinning {\n  0% {\n    -webkit-transform: scale(0);\n    transform: scale(0);\n  }\n  30% {\n    opacity: 1;\n  }\n  100% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 0;\n  }\n}\n\n'], ['\n\n.spinner {\n  margin-top: 1rem;\n  display: inline-block;\n  width: 2em;\n  height: 2em;\n}\n\n.spinner > div {\n  width: 100%;\n  height: 100%;\n  background-color: #3498db;\n  border-radius: 100%;\n  -webkit-animation: spinning .6s infinite ease-out;\n  animation: spinning .6s infinite ease-out;\n}\n\n@keyframes spinning {\n  0% {\n    -webkit-transform: scale(0);\n    transform: scale(0);\n  }\n  30% {\n    opacity: 1;\n  }\n  100% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 0;\n  }\n}\n\n']);
@@ -213,7 +218,7 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 var css = require('csjs');
 module.exports = css(_templateObject);
 
-},{"csjs":16}],10:[function(require,module,exports){
+},{"csjs":17}],10:[function(require,module,exports){
 'use strict';
 
 var _templateObject = _taggedTemplateLiteral(['\n    <p class="notification error">', '</p>\n  '], ['\n    <p class="notification error">', '</p>\n  ']),
@@ -231,7 +236,7 @@ var render = function render(state, actions) {
 
 module.exports = render;
 
-},{"./status.csjs.js":9,"yo-yo":43}],11:[function(require,module,exports){
+},{"./status.csjs.js":9,"yo-yo":45}],11:[function(require,module,exports){
 'use strict';
 
 var isValidEmail = function isValidEmail(str) {
@@ -390,20 +395,104 @@ module.exports = hyperx(belCreateElement);
 module.exports.default = module.exports;
 module.exports.createElement = belCreateElement;
 
-},{"global/document":27,"hyperx":30,"on-load":36}],13:[function(require,module,exports){
+},{"global/document":28,"hyperx":31,"on-load":37}],13:[function(require,module,exports){
 "use strict";
 
 },{}],14:[function(require,module,exports){
 'use strict';
 
+var deselectCurrent = require('toggle-selection');
+
+var defaultMessage = 'Copy to clipboard: #{key}, Enter';
+
+function format(message) {
+  var copyKey = (/mac os x/i.test(navigator.userAgent) ? '⌘' : 'Ctrl') + '+C';
+  return message.replace(/#{\s*key\s*}/g, copyKey);
+}
+
+function copy(text, options) {
+  var debug,
+      message,
+      reselectPrevious,
+      range,
+      selection,
+      mark,
+      success = false;
+  if (!options) {
+    options = {};
+  }
+  debug = options.debug || false;
+  try {
+    reselectPrevious = deselectCurrent();
+
+    range = document.createRange();
+    selection = document.getSelection();
+
+    mark = document.createElement('span');
+    mark.textContent = text;
+    mark.setAttribute('style', [
+    // reset user styles for span element
+    'all: unset',
+    // prevents scrolling to the end of the page
+    'position: fixed', 'top: 0', 'clip: rect(0, 0, 0, 0)',
+    // used to preserve spaces and line breaks
+    'white-space: pre',
+    // do not inherit user-select (it may be `none`)
+    '-webkit-user-select: text', '-moz-user-select: text', '-ms-user-select: text', 'user-select: text'].join(';'));
+
+    document.body.appendChild(mark);
+
+    range.selectNode(mark);
+    selection.addRange(range);
+
+    var successful = document.execCommand('copy');
+    if (!successful) {
+      throw new Error('copy command was unsuccessful');
+    }
+    success = true;
+  } catch (err) {
+    debug && console.error('unable to copy using execCommand: ', err);
+    debug && console.warn('trying IE specific stuff');
+    try {
+      window.clipboardData.setData('text', text);
+      success = true;
+    } catch (err) {
+      debug && console.error('unable to copy using clipboardData: ', err);
+      debug && console.error('falling back to prompt');
+      message = format('message' in options ? options.message : defaultMessage);
+      window.prompt(message, text);
+    }
+  } finally {
+    if (selection) {
+      if (typeof selection.removeRange == 'function') {
+        selection.removeRange(range);
+      } else {
+        selection.removeAllRanges();
+      }
+    }
+
+    if (mark) {
+      document.body.removeChild(mark);
+    }
+    reselectPrevious();
+  }
+
+  return success;
+}
+
+module.exports = copy;
+
+},{"toggle-selection":43}],15:[function(require,module,exports){
+'use strict';
+
 module.exports = require('./lib/csjs');
 
-},{"./lib/csjs":20}],15:[function(require,module,exports){
+},{"./lib/csjs":21}],16:[function(require,module,exports){
 'use strict';
 
 module.exports = require('./lib/get-css');
 
-},{"./lib/get-css":23}],16:[function(require,module,exports){
+},{"./lib/get-css":24}],17:[function(require,module,exports){
 'use strict';
 
 var csjs = require('./csjs');
@@ -412,7 +501,7 @@ module.exports = csjs;
 module.exports.csjs = csjs;
 module.exports.getCss = require('./get-css');
 
-},{"./csjs":14,"./get-css":15}],17:[function(require,module,exports){
+},{"./csjs":15,"./get-css":16}],18:[function(require,module,exports){
 'use strict';
 
 /**
@@ -434,7 +523,7 @@ module.exports = function encode(integer) {
   return str;
 };
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 'use strict';
 
 var makeComposition = require('./composition').makeComposition;
@@ -479,7 +568,7 @@ function getClassChain(obj) {
   return acc;
 }
 
-},{"./composition":19}],19:[function(require,module,exports){
+},{"./composition":20}],20:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -547,7 +636,7 @@ function isComposition(value) {
  */
 function Composition() {}
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 
 var extractExtends = require('./css-extract-extends');
@@ -626,7 +715,7 @@ function without(obj, unwanted) {
   }, {});
 }
 
-},{"./build-exports":18,"./composition":19,"./css-extract-extends":21,"./css-key":22,"./scopeify":26}],21:[function(require,module,exports){
+},{"./build-exports":19,"./composition":20,"./css-extract-extends":22,"./css-key":23,"./scopeify":27}],22:[function(require,module,exports){
 'use strict';
 
 var makeComposition = require('./composition').makeComposition;
@@ -679,7 +768,7 @@ function getClassName(str) {
   return trimmed[0] === '.' ? trimmed.substr(1) : trimmed;
 }
 
-},{"./composition":19}],22:[function(require,module,exports){
+},{"./composition":20}],23:[function(require,module,exports){
 'use strict';
 
 /**
@@ -689,7 +778,7 @@ function getClassName(str) {
 
 module.exports = ' css ';
 
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 'use strict';
 
 var cssKey = require('./css-key');
@@ -698,7 +787,7 @@ module.exports = function getCss(csjs) {
   return csjs[cssKey];
 };
 
-},{"./css-key":22}],24:[function(require,module,exports){
+},{"./css-key":23}],25:[function(require,module,exports){
 'use strict';
 
 /**
@@ -716,7 +805,7 @@ module.exports = function hashStr(str) {
   return hash >>> 0;
 };
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 'use strict';
 
 var encode = require('./base62-encode');
@@ -730,7 +819,7 @@ module.exports = function fileScoper(fileSrc) {
   };
 };
 
-},{"./base62-encode":17,"./hash-string":24}],26:[function(require,module,exports){
+},{"./base62-encode":18,"./hash-string":25}],27:[function(require,module,exports){
 'use strict';
 
 var fileScoper = require('./scoped-name');
@@ -799,7 +888,7 @@ function replaceAnimations(result) {
   return result;
 }
 
-},{"./scoped-name":25}],27:[function(require,module,exports){
+},{"./scoped-name":26}],28:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -819,7 +908,7 @@ if (typeof document !== 'undefined') {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"min-document":13}],28:[function(require,module,exports){
+},{"min-document":13}],29:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -834,7 +923,7 @@ if (typeof window !== "undefined") {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 'use strict';
 
 module.exports = attributeToProperty;
@@ -857,7 +946,7 @@ function attributeToProperty(h) {
   };
 }
 
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1110,7 +1199,7 @@ function selfClosing(tag) {
   return closeRE.test(tag);
 }
 
-},{"hyperscript-attribute-to-property":29}],31:[function(require,module,exports){
+},{"hyperscript-attribute-to-property":30}],32:[function(require,module,exports){
 'use strict';
 
 var numberIsNan = require('number-is-nan');
@@ -1119,7 +1208,7 @@ module.exports = Number.isFinite || function (val) {
 	return !(typeof val !== 'number' || numberIsNan(val) || val === Infinity || val === -Infinity);
 };
 
-},{"number-is-nan":35}],32:[function(require,module,exports){
+},{"number-is-nan":36}],33:[function(require,module,exports){
 'use strict';
 
 // the whatwg-fetch polyfill installs the fetch() function
@@ -1129,7 +1218,7 @@ module.exports = Number.isFinite || function (val) {
 require('whatwg-fetch');
 module.exports = self.fetch.bind(self);
 
-},{"whatwg-fetch":42}],33:[function(require,module,exports){
+},{"whatwg-fetch":44}],34:[function(require,module,exports){
 'use strict';
 // Create a range object for efficently rendering strings to elements.
 
@@ -1785,7 +1874,7 @@ function morphdom(fromNode, toNode, options) {
 
 module.exports = morphdom;
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 'use strict';
 
 var numberIsFinite = require('is-finite');
@@ -1794,14 +1883,14 @@ module.exports = Number.isInteger || function (x) {
 	return numberIsFinite(x) && Math.floor(x) === x;
 };
 
-},{"is-finite":31}],35:[function(require,module,exports){
+},{"is-finite":32}],36:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function (x) {
 	return x !== x;
 };
 
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 'use strict';
 
 /* global MutationObserver */
@@ -1892,7 +1981,7 @@ function eachMutation(nodes, fn) {
   }
 }
 
-},{"global/document":27,"global/window":28}],37:[function(require,module,exports){
+},{"global/document":28,"global/window":29}],38:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -1982,7 +2071,7 @@ var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{}],38:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -2069,13 +2158,13 @@ var objectKeys = Object.keys || function (obj) {
   return res;
 };
 
-},{}],39:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 'use strict';
 
 exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
 
-},{"./decode":37,"./encode":38}],40:[function(require,module,exports){
+},{"./decode":38,"./encode":39}],41:[function(require,module,exports){
 /*
 * This package edit the url-formatter of rawgit.
 * The original source code is https://github.com/rgrove/rawgit/blob/master/public/js/url-formatter.js
@@ -2109,7 +2198,7 @@ module.exports = function (url) {
 	return result;
 };
 
-},{}],41:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 'use strict';
 
 var numberIsInteger = require('number-is-integer');
@@ -2134,7 +2223,47 @@ var fn = module.exports = round.bind(null, 'round');
 fn.up = round.bind(null, 'ceil');
 fn.down = round.bind(null, 'floor');
 
-},{"number-is-integer":34}],42:[function(require,module,exports){
+},{"number-is-integer":35}],43:[function(require,module,exports){
+'use strict';
+
+module.exports = function () {
+  var selection = document.getSelection();
+  if (!selection.rangeCount) {
+    return function () {};
+  }
+  var active = document.activeElement;
+
+  var ranges = [];
+  for (var i = 0; i < selection.rangeCount; i++) {
+    ranges.push(selection.getRangeAt(i));
+  }
+
+  switch (active.tagName.toUpperCase()) {// .toUpperCase handles XHTML
+    case 'INPUT':
+    case 'TEXTAREA':
+      active.blur();
+      break;
+
+    default:
+      active = null;
+      break;
+  }
+
+  selection.removeAllRanges();
+  return function () {
+    selection.type === 'Caret' && selection.removeAllRanges();
+
+    if (!selection.rangeCount) {
+      ranges.forEach(function (range) {
+        selection.addRange(range);
+      });
+    }
+
+    active && active.focus();
+  };
+};
+
+},{}],44:[function(require,module,exports){
 'use strict';
 
 (function (self) {
@@ -2591,7 +2720,7 @@ fn.down = round.bind(null, 'floor');
   self.fetch.polyfill = true;
 })(typeof self !== 'undefined' ? self : undefined);
 
-},{}],43:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 'use strict';
 
 var bel = require('bel'); // turns template tag into DOM elements
@@ -2633,7 +2762,7 @@ module.exports.update = function (fromNode, toNode, opts) {
   }
 };
 
-},{"./update-events.js":44,"bel":12,"morphdom":33}],44:[function(require,module,exports){
+},{"./update-events.js":46,"bel":12,"morphdom":34}],46:[function(require,module,exports){
 'use strict';
 
 module.exports = [

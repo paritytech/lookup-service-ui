@@ -10,7 +10,7 @@ const render = require('./lib/ui')
 // state
 const state = {
   testnet: true,
-  input: 'jannis@ethcore.io',
+  input: '',
   loading: false,
   error: null,
   data: null
