@@ -78,7 +78,17 @@ var lookup = function lookup(query, testnet) {
   var url = "production" === 'dev' ? 'http://localhost:' + 8443 + '/?' : 'https://id.parity.io:' + (testnet ? 8443 : 443) + '/?';
 
   return fetch(url + qs.stringify(query)).then(function (res) {
-    if (!res.ok) throw new Error(res.statusText);
+    if (!res.ok) {
+      var isJSON = res.headers.get('Content-Type').slice(0, 16) === 'application/json';
+      if (isJSON) {
+        return res.json().then(function (data) {
+          throw new Error(data.message);
+        }, function () {
+          throw new Error(res.statusText);
+        });
+      }
+      throw new Error(res.statusText);
+    }
     return res.json();
   });
 };
@@ -155,7 +165,7 @@ module.exports = css(_templateObject);
 },{"csjs":17}],6:[function(require,module,exports){
 'use strict';
 
-var _templateObject = _taggedTemplateLiteral(['\n    <div>\n      <input\n        type="text" value="', '"\n        placeholder="email or address"\n        onchange=', '\n        onkeypress=', '\n        onblur=', '\n      />\n      <div class="', '">\n        <select\n          aria-label="chain"\n          onchange=', '\n        >\n          <option\n            value="mainnet" selected="', '"\n          >Mainnet</option>\n          <option\n            value="testnet" selected="', '"\n          >Testnet</option>\n        </select>\n        <button\n          className="lookup" onclick=', '\n        >Lookup</button>\n      </div>\n    </div>\n  '], ['\n    <div>\n      <input\n        type="text" value="', '"\n        placeholder="email or address"\n        onchange=', '\n        onkeypress=', '\n        onblur=', '\n      />\n      <div class="', '">\n        <select\n          aria-label="chain"\n          onchange=', '\n        >\n          <option\n            value="mainnet" selected="', '"\n          >Mainnet</option>\n          <option\n            value="testnet" selected="', '"\n          >Testnet</option>\n        </select>\n        <button\n          className="lookup" onclick=', '\n        >Lookup</button>\n      </div>\n    </div>\n  ']);
+var _templateObject = _taggedTemplateLiteral(['\n    <form onsubmit=', ' action="#">\n      <input\n        type="text" value="', '"\n        placeholder="email or address"\n        onchange=', '\n        onkeypress=', '\n        onblur=', '\n      />\n      <div class="', '">\n        <select\n          aria-label="chain"\n          onchange=', '\n        >\n          <option\n            value="mainnet" selected="', '"\n          >Mainnet</option>\n          <option\n            value="testnet" selected="', '"\n          >Testnet</option>\n        </select>\n        <button\n          className="lookup" onclick=', '\n        >Lookup</button>\n      </div>\n    </form>\n  '], ['\n    <form onsubmit=', ' action="#">\n      <input\n        type="text" value="', '"\n        placeholder="email or address"\n        onchange=', '\n        onkeypress=', '\n        onblur=', '\n      />\n      <div class="', '">\n        <select\n          aria-label="chain"\n          onchange=', '\n        >\n          <option\n            value="mainnet" selected="', '"\n          >Mainnet</option>\n          <option\n            value="testnet" selected="', '"\n          >Testnet</option>\n        </select>\n        <button\n          className="lookup" onclick=', '\n        >Lookup</button>\n      </div>\n    </form>\n  ']);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -164,6 +174,11 @@ var yo = require('yo-yo');
 var styles = require('./form.csjs.js');
 
 var render = function render(state, actions) {
+  var formOnSubmit = function formOnSubmit(e) {
+    e.preventDefault();
+    actions.lookup();
+    return false;
+  };
   var chainOnChange = function chainOnChange(e) {
     var chain = e.target.value;
     actions.setTestnet(chain === 'testnet');
@@ -173,7 +188,7 @@ var render = function render(state, actions) {
     actions.setInput(input.trim());
   };
 
-  return yo(_templateObject, state.input, inputOnChange, inputOnChange, inputOnChange, styles.columns, chainOnChange, !state.testnet, state.testnet, actions.lookup);
+  return yo(_templateObject, formOnSubmit, state.input, inputOnChange, inputOnChange, inputOnChange, styles.columns, chainOnChange, !state.testnet, state.testnet, actions.lookup);
 };
 
 module.exports = render;
