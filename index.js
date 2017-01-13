@@ -35,6 +35,9 @@ const lookup = () => {
   } else if (util.isValidAddress(input)) {
     state.error = null
     req = _lookup({address: input}, state.testnet)
+  } else if (input.length > 0) {
+    state.error = null
+    req = _lookup({name: input}, state.testnet)
   } else {
     state.error = 'invalid input'
     return rerender()

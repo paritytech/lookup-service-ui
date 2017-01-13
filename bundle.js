@@ -36,6 +36,9 @@ var lookup = function lookup() {
   } else if (util.isValidAddress(input)) {
     state.error = null;
     req = _lookup({ address: input }, state.testnet);
+  } else if (input.length > 0) {
+    state.error = null;
+    req = _lookup({ name: input }, state.testnet);
   } else {
     state.error = 'invalid input';
     return rerender();
@@ -75,7 +78,7 @@ var fetch = require('isomorphic-fetch');
 var qs = require('querystring');
 
 var lookup = function lookup(query, testnet) {
-  var url = "production" === 'dev' ? 'http://localhost:' + 8443 + '/?' : 'https://id.parity.io:' + (testnet ? 8443 : 443) + '/?';
+  var url = "production" === 'dev' ? 'https://localhost:' + 8443 + '/?' : 'https://id.parity.io:' + (testnet ? 8443 : 443) + '/?';
 
   return fetch(url + qs.stringify(query)).then(function (res) {
     if (!res.ok) {
@@ -98,7 +101,7 @@ module.exports = lookup;
 },{"isomorphic-fetch":33,"querystring":40}],3:[function(require,module,exports){
 'use strict';
 
-var _templateObject = _taggedTemplateLiteral(['\n\n.container {\n  margin-top: 2rem;\n}\n\n.address {\n  display: inline-block;\n  padding: .3em .4em;\n  vertical-align: middle;\n  line-height: 1;\n  color: #333;\n  text-decoration: none;\n  background-color: #ddd;\n  border-radius: .3em;\n}\n\n.address:hover {\n  background-color: #eee;\n}\n\n.copy {\n  margin-top: 0;\n  vertical-align: middle;\n  width: auto;\n  max-width: none;\n  font-size: 80%;\n  opacity: .7;\n}\n.copy:hover, .copy:active {\n  opacity: 1;\n}\n\n.heading {\n  font-size: 120%;\n  font-weight: inherit;\n}\n\n.tokens {\n  margin: .5rem 0 0 0;\n}\n\n.tokens .chip {\n  background-color: #3498db;\n}\n.tokens .chip img {\n  border-color: #3498db;\n}\n.tokens code {\n  font-size: 110%;\n}\n\n.badges {\n  margin: .5rem 0 0 0;\n}\n\n.badges a {\n  color: white;\n  text-decoration: none;\n}\n\n.chip {\n  position: relative;\n  display: inline-block;\n  margin-left: 1rem;\n  padding: .1em .4em .1em 2.2em;\n  color: #fff;\n  border-radius: .3em;\n  background-color: #27ae60;\n}\n.chip:first-child {\n  margin-left: 0;\n}\n\n.chip img {\n  position: absolute;\n  top: 50%; left: 0;\n  margin-top: -1.1em;\n  margin-left: -.2em;\n  padding: .2em;\n  width: 1.7em;\n  height: 1.7em;\n  border: .1em solid #27ae60;\n  border-radius: 100%;\n  background-color: white;\n}\n\n'], ['\n\n.container {\n  margin-top: 2rem;\n}\n\n.address {\n  display: inline-block;\n  padding: .3em .4em;\n  vertical-align: middle;\n  line-height: 1;\n  color: #333;\n  text-decoration: none;\n  background-color: #ddd;\n  border-radius: .3em;\n}\n\n.address:hover {\n  background-color: #eee;\n}\n\n.copy {\n  margin-top: 0;\n  vertical-align: middle;\n  width: auto;\n  max-width: none;\n  font-size: 80%;\n  opacity: .7;\n}\n.copy:hover, .copy:active {\n  opacity: 1;\n}\n\n.heading {\n  font-size: 120%;\n  font-weight: inherit;\n}\n\n.tokens {\n  margin: .5rem 0 0 0;\n}\n\n.tokens .chip {\n  background-color: #3498db;\n}\n.tokens .chip img {\n  border-color: #3498db;\n}\n.tokens code {\n  font-size: 110%;\n}\n\n.badges {\n  margin: .5rem 0 0 0;\n}\n\n.badges a {\n  color: white;\n  text-decoration: none;\n}\n\n.chip {\n  position: relative;\n  display: inline-block;\n  margin-left: 1rem;\n  padding: .1em .4em .1em 2.2em;\n  color: #fff;\n  border-radius: .3em;\n  background-color: #27ae60;\n}\n.chip:first-child {\n  margin-left: 0;\n}\n\n.chip img {\n  position: absolute;\n  top: 50%; left: 0;\n  margin-top: -1.1em;\n  margin-left: -.2em;\n  padding: .2em;\n  width: 1.7em;\n  height: 1.7em;\n  border: .1em solid #27ae60;\n  border-radius: 100%;\n  background-color: white;\n}\n\n']);
+var _templateObject = _taggedTemplateLiteral(['\n\n.container {\n  margin-top: 2rem;\n}\n\n.name {\n  display: inline-block;\n  padding: .3em .4em;\n  line-height: 1;\n  font-size: 115%;\n  color: #333;\n  background-color: #ddd;\n  border-radius: .3em;\n}\n\n.address {\n  display: inline-block;\n  padding: .3em .4em;\n  vertical-align: middle;\n  line-height: 1;\n  color: #333;\n  text-decoration: none;\n  background-color: #ddd;\n  border-radius: .3em;\n}\n\n.address:hover {\n  background-color: #eee;\n}\n\n.copy {\n  margin-top: 0;\n  vertical-align: middle;\n  width: auto;\n  max-width: none;\n  font-size: 80%;\n  opacity: .7;\n}\n.copy:hover, .copy:active {\n  opacity: 1;\n}\n\n.heading {\n  font-size: 120%;\n  font-weight: inherit;\n}\n\n.tokens {\n  margin: .5rem 0 0 0;\n}\n\n.tokens .chip {\n  background-color: #3498db;\n}\n.tokens .chip img {\n  border-color: #3498db;\n}\n.tokens code {\n  font-size: 110%;\n}\n\n.badges {\n  margin: .5rem 0 0 0;\n}\n\n.badges a {\n  color: white;\n  text-decoration: none;\n}\n\n.chip {\n  position: relative;\n  display: inline-block;\n  margin-left: 1rem;\n  padding: .1em .4em .1em 2.2em;\n  color: #fff;\n  border-radius: .3em;\n  background-color: #27ae60;\n}\n.chip:first-child {\n  margin-left: 0;\n}\n\n.chip img {\n  position: absolute;\n  top: 50%; left: 0;\n  margin-top: -1.1em;\n  margin-left: -.2em;\n  padding: .2em;\n  width: 1.7em;\n  height: 1.7em;\n  border: .1em solid #27ae60;\n  border-radius: 100%;\n  background-color: white;\n}\n\n'], ['\n\n.container {\n  margin-top: 2rem;\n}\n\n.name {\n  display: inline-block;\n  padding: .3em .4em;\n  line-height: 1;\n  font-size: 115%;\n  color: #333;\n  background-color: #ddd;\n  border-radius: .3em;\n}\n\n.address {\n  display: inline-block;\n  padding: .3em .4em;\n  vertical-align: middle;\n  line-height: 1;\n  color: #333;\n  text-decoration: none;\n  background-color: #ddd;\n  border-radius: .3em;\n}\n\n.address:hover {\n  background-color: #eee;\n}\n\n.copy {\n  margin-top: 0;\n  vertical-align: middle;\n  width: auto;\n  max-width: none;\n  font-size: 80%;\n  opacity: .7;\n}\n.copy:hover, .copy:active {\n  opacity: 1;\n}\n\n.heading {\n  font-size: 120%;\n  font-weight: inherit;\n}\n\n.tokens {\n  margin: .5rem 0 0 0;\n}\n\n.tokens .chip {\n  background-color: #3498db;\n}\n.tokens .chip img {\n  border-color: #3498db;\n}\n.tokens code {\n  font-size: 110%;\n}\n\n.badges {\n  margin: .5rem 0 0 0;\n}\n\n.badges a {\n  color: white;\n  text-decoration: none;\n}\n\n.chip {\n  position: relative;\n  display: inline-block;\n  margin-left: 1rem;\n  padding: .1em .4em .1em 2.2em;\n  color: #fff;\n  border-radius: .3em;\n  background-color: #27ae60;\n}\n.chip:first-child {\n  margin-left: 0;\n}\n\n.chip img {\n  position: absolute;\n  top: 50%; left: 0;\n  margin-top: -1.1em;\n  margin-left: -.2em;\n  padding: .2em;\n  width: 1.7em;\n  height: 1.7em;\n  border: .1em solid #27ae60;\n  border-radius: 100%;\n  background-color: white;\n}\n\n']);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -108,10 +111,11 @@ module.exports = css(_templateObject);
 },{"csjs":17}],4:[function(require,module,exports){
 'use strict';
 
-var _templateObject = _taggedTemplateLiteral(['\n      <div>\n        <a\n          class="', '"\n          href="', '"\n          target="_blank"\n        >\n          <code>', '</code>\n        </a>\n        <button\n          class="', '"\n          onclick=', '\n        >copy</button>\n      </div>\n  '], ['\n      <div>\n        <a\n          class="', '"\n          href="', '"\n          target="_blank"\n        >\n          <code>', '</code>\n        </a>\n        <button\n          class="', '"\n          onclick=', '\n        >copy</button>\n      </div>\n  ']),
-    _templateObject2 = _taggedTemplateLiteral(['\n    <li class="', '">\n      <img src="', '" />\n      <code>', '</code>\n      <code><abbr title="', '">', '</abbr></code>\n    </li>\n  '], ['\n    <li class="', '">\n      <img src="', '" />\n      <code>', '</code>\n      <code><abbr title="', '">', '</abbr></code>\n    </li>\n  ']),
-    _templateObject3 = _taggedTemplateLiteral(['\n    <li class="', '">\n      <a\n        href="', '"\n        target="_blank"\n      >\n        <img src="', '" />\n        <abbr title="', '">', '</abbr>\n      </a>\n    </li>\n  '], ['\n    <li class="', '">\n      <a\n        href="', '"\n        target="_blank"\n      >\n        <img src="', '" />\n        <abbr title="', '">', '</abbr>\n      </a>\n    </li>\n  ']),
-    _templateObject4 = _taggedTemplateLiteral(['\n    <div class="', '">\n      <h1 class="', '">Address</h1>\n      ', '\n      <h1 class="', '">Tokens</h1>\n      <ul class="', '">\n        ', '\n      </ul>\n      <h1 class="', '">Badges</h1>\n      <ul class="', '">\n        ', '\n      </ul>\n    </div>\n  '], ['\n    <div class="', '">\n      <h1 class="', '">Address</h1>\n      ', '\n      <h1 class="', '">Tokens</h1>\n      <ul class="', '">\n        ', '\n      </ul>\n      <h1 class="', '">Badges</h1>\n      <ul class="', '">\n        ', '\n      </ul>\n    </div>\n  ']);
+var _templateObject = _taggedTemplateLiteral(['\n    <code class="', '">', '</code>\n  '], ['\n    <code class="', '">', '</code>\n  ']),
+    _templateObject2 = _taggedTemplateLiteral(['\n      <div>\n        <a\n          class="', '"\n          href="', '"\n          target="_blank"\n        >\n          <code>', '</code>\n        </a>\n        <button\n          class="', '"\n          onclick=', '\n        >copy</button>\n      </div>\n  '], ['\n      <div>\n        <a\n          class="', '"\n          href="', '"\n          target="_blank"\n        >\n          <code>', '</code>\n        </a>\n        <button\n          class="', '"\n          onclick=', '\n        >copy</button>\n      </div>\n  ']),
+    _templateObject3 = _taggedTemplateLiteral(['\n    <li class="', '">\n      <img src="', '" />\n      <code>', '</code>\n      <code><abbr title="', '">', '</abbr></code>\n    </li>\n  '], ['\n    <li class="', '">\n      <img src="', '" />\n      <code>', '</code>\n      <code><abbr title="', '">', '</abbr></code>\n    </li>\n  ']),
+    _templateObject4 = _taggedTemplateLiteral(['\n    <li class="', '">\n      <a\n        href="', '"\n        target="_blank"\n      >\n        <img src="', '" />\n        <abbr title="', '">', '</abbr>\n      </a>\n    </li>\n  '], ['\n    <li class="', '">\n      <a\n        href="', '"\n        target="_blank"\n      >\n        <img src="', '" />\n        <abbr title="', '">', '</abbr>\n      </a>\n    </li>\n  ']),
+    _templateObject5 = _taggedTemplateLiteral(['\n    <div class="', '">\n      <h1 class="', '">Name</h1>\n      ', '\n      <h1 class="', '">Address</h1>\n      ', '\n      <h1 class="', '">Tokens</h1>\n      <ul class="', '">\n        ', '\n      </ul>\n      <h1 class="', '">Badges</h1>\n      <ul class="', '">\n        ', '\n      </ul>\n    </div>\n  '], ['\n    <div class="', '">\n      <h1 class="', '">Name</h1>\n      ', '\n      <h1 class="', '">Address</h1>\n      ', '\n      <h1 class="', '">Tokens</h1>\n      <ul class="', '">\n        ', '\n      </ul>\n      <h1 class="', '">Badges</h1>\n      <ul class="', '">\n        ', '\n      </ul>\n    </div>\n  ']);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -127,7 +131,9 @@ var _require = require('../util'),
 
 var render = function render(state, actions) {
   if (!state.data) return null;
+  console.log(state.data);
   var _state$data = state.data,
+      name = _state$data.name,
       address = _state$data.address,
       tokens = _state$data.tokens,
       badges = _state$data.badges;
@@ -137,17 +143,19 @@ var render = function render(state, actions) {
     copy(address);
   };
 
-  var renderedAddress = yo(_templateObject, styles.address, etherscanLink(address, state.testnet), address, styles.copy, copyOnClick);
+  var renderedName = name && yo(_templateObject, styles.name, name);
+
+  var renderedAddress = yo(_templateObject2, styles.address, etherscanLink(address, state.testnet), address, styles.copy, copyOnClick);
 
   var renderedTokens = tokens.map(function (token) {
-    return yo(_templateObject2, styles.chip, token.img ? rawgit(token.img).cdn : null, roundTo(parseFloat(token.balance), 5), token.name, token.TLA);
+    return yo(_templateObject3, styles.chip, token.img ? rawgit(token.img).cdn : null, roundTo(parseFloat(token.balance), 5), token.name, token.TLA);
   });
 
   var renderedBadges = badges.map(function (badge) {
-    return yo(_templateObject3, styles.chip, etherscanLink(badge.address, state.testnet), badge.img ? rawgit(badge.img).cdn : null, badge.address, badge.title);
+    return yo(_templateObject4, styles.chip, etherscanLink(badge.address, state.testnet), badge.img ? rawgit(badge.img).cdn : null, badge.address, badge.title);
   });
 
-  return yo(_templateObject4, styles.container, styles.heading, renderedAddress, styles.heading, styles.tokens, renderedTokens, styles.heading, styles.badges, renderedBadges);
+  return yo(_templateObject5, styles.container, styles.heading, renderedName, styles.heading, renderedAddress, styles.heading, styles.tokens, renderedTokens, styles.heading, styles.badges, renderedBadges);
 };
 
 module.exports = render;
@@ -165,7 +173,7 @@ module.exports = css(_templateObject);
 },{"csjs":17}],6:[function(require,module,exports){
 'use strict';
 
-var _templateObject = _taggedTemplateLiteral(['\n    <form onsubmit=', ' action="#">\n      <input\n        type="text" value="', '"\n        placeholder="email or address"\n        onchange=', '\n        onkeypress=', '\n        onblur=', '\n      />\n      <div class="', '">\n        <select\n          aria-label="chain"\n          onchange=', '\n        >\n          <option\n            value="mainnet" selected="', '"\n          >Mainnet</option>\n          <option\n            value="testnet" selected="', '"\n          >Testnet</option>\n        </select>\n        <button\n          className="lookup" onclick=', '\n        >Lookup</button>\n      </div>\n    </form>\n  '], ['\n    <form onsubmit=', ' action="#">\n      <input\n        type="text" value="', '"\n        placeholder="email or address"\n        onchange=', '\n        onkeypress=', '\n        onblur=', '\n      />\n      <div class="', '">\n        <select\n          aria-label="chain"\n          onchange=', '\n        >\n          <option\n            value="mainnet" selected="', '"\n          >Mainnet</option>\n          <option\n            value="testnet" selected="', '"\n          >Testnet</option>\n        </select>\n        <button\n          className="lookup" onclick=', '\n        >Lookup</button>\n      </div>\n    </form>\n  ']);
+var _templateObject = _taggedTemplateLiteral(['\n    <form onsubmit=', ' action="#">\n      <input\n        type="text" value="', '"\n        placeholder="email, name or address"\n        onchange=', '\n        onkeypress=', '\n        onblur=', '\n      />\n      <div class="', '">\n        <select\n          aria-label="chain"\n          onchange=', '\n        >\n          <option\n            value="mainnet" selected="', '"\n          >Mainnet</option>\n          <option\n            value="testnet" selected="', '"\n          >Testnet</option>\n        </select>\n        <button\n          className="lookup" onclick=', '\n        >Lookup</button>\n      </div>\n    </form>\n  '], ['\n    <form onsubmit=', ' action="#">\n      <input\n        type="text" value="', '"\n        placeholder="email, name or address"\n        onchange=', '\n        onkeypress=', '\n        onblur=', '\n      />\n      <div class="', '">\n        <select\n          aria-label="chain"\n          onchange=', '\n        >\n          <option\n            value="mainnet" selected="', '"\n          >Mainnet</option>\n          <option\n            value="testnet" selected="', '"\n          >Testnet</option>\n        </select>\n        <button\n          className="lookup" onclick=', '\n        >Lookup</button>\n      </div>\n    </form>\n  ']);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -196,7 +204,7 @@ module.exports = render;
 },{"./form.csjs.js":5,"yo-yo":45}],7:[function(require,module,exports){
 'use strict';
 
-var _templateObject = _taggedTemplateLiteral(['\n\n.container {\n  margin: 0 auto;\n  max-width: 30rem;\n  text-align: center;\n}\n\n.logo {\n  display: inline-block;\n  margin: 0 auto 1rem auto;\n  max-width: 5rem;\n}\n\n'], ['\n\n.container {\n  margin: 0 auto;\n  max-width: 30rem;\n  text-align: center;\n}\n\n.logo {\n  display: inline-block;\n  margin: 0 auto 1rem auto;\n  max-width: 5rem;\n}\n\n']);
+var _templateObject = _taggedTemplateLiteral(['\n\n.container {\n  margin: 2rem auto;\n  max-width: 30rem;\n  text-align: center;\n}\n\n.logo {\n  display: inline-block;\n  margin: 0 auto 1rem auto;\n  max-width: 5rem;\n}\n\n'], ['\n\n.container {\n  margin: 2rem auto;\n  max-width: 30rem;\n  text-align: center;\n}\n\n.logo {\n  display: inline-block;\n  margin: 0 auto 1rem auto;\n  max-width: 5rem;\n}\n\n']);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
