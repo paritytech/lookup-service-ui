@@ -45,6 +45,7 @@
     "isomorphic-fetch": "^2.2.1",
     "rawgit-url-formatter": "^1.0.1",
     "round-to": "^1.1.0",
+    "web3": "^0.18.2",
     "yo-yo": "^1.3.1"
   }
 }

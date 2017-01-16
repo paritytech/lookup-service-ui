@@ -31,7 +31,8 @@ const lookup = () => {
   let req
   if (util.isValidEmail(input)) {
     state.error = null
-    req = _lookup({email: input}, state.testnet)
+    const emailHash = util.sha3(input.trim())
+    req = _lookup({emailHash}, state.testnet)
   } else if (util.isValidAddress(input)) {
     state.error = null
     req = _lookup({address: input}, state.testnet)
