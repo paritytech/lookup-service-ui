@@ -9,7 +9,7 @@ const render = require('./lib/ui')
 
 // state
 const state = {
-  testnet: true,
+  testnet: false,
   input: '',
   loading: false,
   error: null,
