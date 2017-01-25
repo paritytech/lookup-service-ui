@@ -11,7 +11,7 @@ var render = require('./lib/ui');
 // state
 var state = {
   testnet: false,
-  input: 'jannis@ethcore.io',
+  input: '',
   loading: false,
   error: null,
   data: null
@@ -222,7 +222,7 @@ module.exports = css(_templateObject);
 },{"csjs":19}],9:[function(require,module,exports){
 'use strict';
 
-var _templateObject = _taggedTemplateLiteral(['\n  <div className="system-sans-serif ', '">\n    <a className="', '" href="https://parity.io/">\n    \t<img src="logo.svg" alt="Parity Logo" />\n    </a>\n    ', '\n    ', '\n    ', '\n  </div>\n'], ['\n  <div className="system-sans-serif ', '">\n    <a className="', '" href="https://parity.io/">\n    \t<img src="logo.svg" alt="Parity Logo" />\n    </a>\n    ', '\n    ', '\n    ', '\n  </div>\n']);
+var _templateObject = _taggedTemplateLiteral(['\n  <div className="system-sans-serif ', '">\n    <a className="', '" href="https://parity.io/">\n      <img src="logo.svg" alt="Parity Logo" />\n    </a>\n    ', '\n    ', '\n    ', '\n  </div>\n'], ['\n  <div className="system-sans-serif ', '">\n    <a className="', '" href="https://parity.io/">\n      <img src="logo.svg" alt="Parity Logo" />\n    </a>\n    ', '\n    ', '\n    ', '\n  </div>\n']);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
