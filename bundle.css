@@ -1,14 +1,17 @@
 
 
-.container_20FdWG {
+.container_3Cd0hE {
   margin: 2rem auto;
   max-width: 30rem;
   text-align: center;
 }
 
-.logo_20FdWG {
+.logo_3Cd0hE {
   display: inline-block;
   margin: 0 auto 1rem auto;
+}
+.logo_3Cd0hE img {
+  display: inline-block;
   max-width: 5rem;
 }
 

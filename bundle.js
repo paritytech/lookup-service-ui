@@ -11,7 +11,7 @@ var render = require('./lib/ui');
 // state
 var state = {
   testnet: false,
-  input: '',
+  input: 'jannis@ethcore.io',
   loading: false,
   error: null,
   data: null
@@ -72,7 +72,7 @@ var rerender = function rerender() {
   yo.update(root, render(state, actions));
 };
 
-},{"./lib/lookup":2,"./lib/ui":8,"./lib/util":11,"global/document":29,"yo-yo":47}],2:[function(require,module,exports){
+},{"./lib/lookup":2,"./lib/ui":9,"./lib/util":12,"global/document":30,"yo-yo":48}],2:[function(require,module,exports){
 'use strict';
 
 var fetch = require('isomorphic-fetch');
@@ -99,7 +99,7 @@ var lookup = function lookup(query, testnet) {
 
 module.exports = lookup;
 
-},{"isomorphic-fetch":34,"querystring":42}],3:[function(require,module,exports){
+},{"isomorphic-fetch":35,"querystring":43}],3:[function(require,module,exports){
 'use strict';
 
 var _templateObject = _taggedTemplateLiteral(['\n\n.container {\n  margin-top: 2rem;\n}\n\n.name {\n  display: inline-block;\n  padding: .3em .4em;\n  line-height: 1;\n  font-size: 115%;\n  color: #333;\n  background-color: #ddd;\n  border-radius: .3em;\n}\n\n.address {\n  display: inline-block;\n  padding: .3em .4em;\n  vertical-align: middle;\n  line-height: 1;\n  color: #333;\n  text-decoration: none;\n  background-color: #ddd;\n  border-radius: .3em;\n}\n\n.address:hover {\n  background-color: #eee;\n}\n\n.copy {\n  margin-top: 0;\n  vertical-align: middle;\n  width: auto;\n  max-width: none;\n  font-size: 80%;\n  opacity: .7;\n}\n.copy:hover, .copy:active {\n  opacity: 1;\n}\n\n.heading {\n  font-size: 120%;\n  font-weight: inherit;\n}\n\n.tokens {\n  margin: .5rem 0 0 0;\n  line-height: 3rem;\n}\n\n.tokens .chip {\n  background-color: #3498db;\n}\n.tokens .chip img {\n  border-color: #3498db;\n}\n.tokens code {\n  font-size: 110%;\n}\n\n.badges {\n  margin: .5rem 0 0 0;\n  line-height: 3rem;\n}\n\n.badges a {\n  color: white;\n  text-decoration: none;\n}\n\n.chip {\n  position: relative;\n  display: inline-block;\n  margin-left: 1rem;\n  padding: .1em .4em .1em 2.2em;\n  line-height: 1rem;\n  color: #fff;\n  border-radius: .3em;\n  background-color: #27ae60;\n}\n.chip:first-child {\n  margin-left: 0;\n}\n\n.chip img {\n  position: absolute;\n  top: 50%; left: 0;\n  margin-top: -1.1em;\n  margin-left: -.2em;\n  padding: .2em;\n  width: 1.7em;\n  height: 1.7em;\n  border: .1em solid #27ae60;\n  border-radius: 100%;\n  background-color: white;\n}\n\n'], ['\n\n.container {\n  margin-top: 2rem;\n}\n\n.name {\n  display: inline-block;\n  padding: .3em .4em;\n  line-height: 1;\n  font-size: 115%;\n  color: #333;\n  background-color: #ddd;\n  border-radius: .3em;\n}\n\n.address {\n  display: inline-block;\n  padding: .3em .4em;\n  vertical-align: middle;\n  line-height: 1;\n  color: #333;\n  text-decoration: none;\n  background-color: #ddd;\n  border-radius: .3em;\n}\n\n.address:hover {\n  background-color: #eee;\n}\n\n.copy {\n  margin-top: 0;\n  vertical-align: middle;\n  width: auto;\n  max-width: none;\n  font-size: 80%;\n  opacity: .7;\n}\n.copy:hover, .copy:active {\n  opacity: 1;\n}\n\n.heading {\n  font-size: 120%;\n  font-weight: inherit;\n}\n\n.tokens {\n  margin: .5rem 0 0 0;\n  line-height: 3rem;\n}\n\n.tokens .chip {\n  background-color: #3498db;\n}\n.tokens .chip img {\n  border-color: #3498db;\n}\n.tokens code {\n  font-size: 110%;\n}\n\n.badges {\n  margin: .5rem 0 0 0;\n  line-height: 3rem;\n}\n\n.badges a {\n  color: white;\n  text-decoration: none;\n}\n\n.chip {\n  position: relative;\n  display: inline-block;\n  margin-left: 1rem;\n  padding: .1em .4em .1em 2.2em;\n  line-height: 1rem;\n  color: #fff;\n  border-radius: .3em;\n  background-color: #27ae60;\n}\n.chip:first-child {\n  margin-left: 0;\n}\n\n.chip img {\n  position: absolute;\n  top: 50%; left: 0;\n  margin-top: -1.1em;\n  margin-left: -.2em;\n  padding: .2em;\n  width: 1.7em;\n  height: 1.7em;\n  border: .1em solid #27ae60;\n  border-radius: 100%;\n  background-color: white;\n}\n\n']);
@@ -109,7 +109,7 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 var css = require('csjs');
 module.exports = css(_templateObject);
 
-},{"csjs":18}],4:[function(require,module,exports){
+},{"csjs":19}],4:[function(require,module,exports){
 'use strict';
 
 var _templateObject = _taggedTemplateLiteral(['\n    <code class="', '">', '</code>\n  '], ['\n    <code class="', '">', '</code>\n  ']),
@@ -129,6 +129,8 @@ var styles = require('./data.csjs.js');
 
 var _require = require('../util'),
     etherscanLink = _require.etherscanLink;
+
+var fallback = require('./fallback-badge-icon');
 
 var render = function render(state, actions) {
   if (!state.data) return null;
@@ -153,7 +155,7 @@ var render = function render(state, actions) {
   });
 
   var renderedBadges = badges.map(function (badge) {
-    return yo(_templateObject4, styles.chip, etherscanLink(badge.address, state.testnet), badge.img ? rawgit(badge.img).cdn : null, badge.address, badge.title);
+    return yo(_templateObject4, styles.chip, etherscanLink(badge.address, state.testnet), badge.img ? rawgit(badge.img).cdn : fallback, badge.address, badge.title);
   });
 
   return yo(_templateObject5, styles.container, styles.heading, renderedName, styles.heading, renderedAddress, styles.heading, styles.tokens, renderedTokens, styles.heading, styles.badges, renderedBadges);
@@ -161,7 +163,12 @@ var render = function render(state, actions) {
 
 module.exports = render;
 
-},{"../util":11,"./data.csjs.js":3,"copy-to-clipboard":15,"rawgit-url-formatter":43,"round-to":44,"yo-yo":47}],5:[function(require,module,exports){
+},{"../util":12,"./data.csjs.js":3,"./fallback-badge-icon":5,"copy-to-clipboard":16,"rawgit-url-formatter":44,"round-to":45,"yo-yo":48}],5:[function(require,module,exports){
+'use strict';
+
+module.exports = 'data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">\n<circle fill="#4A90E2" cx="50" cy="50" r="50"/><path d="M20 45 L10 55 L35 85 L90 35 L80 25 L36 65 z" fill="#FFF"/></svg>';
+
+},{}],6:[function(require,module,exports){
 'use strict';
 
 var _templateObject = _taggedTemplateLiteral(['\n\n.columns {\n  display: flex;\n}\n\n.columns > * {\n  margin-left: .5rem;\n}\n.columns > :first-child {\n  margin-left: 0;\n}\n\n'], ['\n\n.columns {\n  display: flex;\n}\n\n.columns > * {\n  margin-left: .5rem;\n}\n.columns > :first-child {\n  margin-left: 0;\n}\n\n']);
@@ -171,7 +178,7 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 var css = require('csjs');
 module.exports = css(_templateObject);
 
-},{"csjs":18}],6:[function(require,module,exports){
+},{"csjs":19}],7:[function(require,module,exports){
 'use strict';
 
 var _templateObject = _taggedTemplateLiteral(['\n    <form onsubmit=', ' action="#">\n      <input\n        type="text" value="', '"\n        placeholder="email, name or address"\n        onchange=', '\n        onkeypress=', '\n        onblur=', '\n        spellcheck="false"\n      />\n      <div class="', '">\n        <select\n          aria-label="chain"\n          onchange=', '\n        >\n          <option\n            value="mainnet" selected="', '"\n          >Mainnet</option>\n          <option\n            value="testnet" selected="', '"\n          >Testnet</option>\n        </select>\n        <button\n          className="lookup" onclick=', '\n        >Lookup</button>\n      </div>\n    </form>\n  '], ['\n    <form onsubmit=', ' action="#">\n      <input\n        type="text" value="', '"\n        placeholder="email, name or address"\n        onchange=', '\n        onkeypress=', '\n        onblur=', '\n        spellcheck="false"\n      />\n      <div class="', '">\n        <select\n          aria-label="chain"\n          onchange=', '\n        >\n          <option\n            value="mainnet" selected="', '"\n          >Mainnet</option>\n          <option\n            value="testnet" selected="', '"\n          >Testnet</option>\n        </select>\n        <button\n          className="lookup" onclick=', '\n        >Lookup</button>\n      </div>\n    </form>\n  ']);
@@ -202,20 +209,20 @@ var render = function render(state, actions) {
 
 module.exports = render;
 
-},{"./form.csjs.js":5,"yo-yo":47}],7:[function(require,module,exports){
+},{"./form.csjs.js":6,"yo-yo":48}],8:[function(require,module,exports){
 'use strict';
 
-var _templateObject = _taggedTemplateLiteral(['\n\n.container {\n  margin: 2rem auto;\n  max-width: 30rem;\n  text-align: center;\n}\n\n.logo {\n  display: inline-block;\n  margin: 0 auto 1rem auto;\n  max-width: 5rem;\n}\n\n'], ['\n\n.container {\n  margin: 2rem auto;\n  max-width: 30rem;\n  text-align: center;\n}\n\n.logo {\n  display: inline-block;\n  margin: 0 auto 1rem auto;\n  max-width: 5rem;\n}\n\n']);
+var _templateObject = _taggedTemplateLiteral(['\n\n.container {\n  margin: 2rem auto;\n  max-width: 30rem;\n  text-align: center;\n}\n\n.logo {\n  display: inline-block;\n  margin: 0 auto 1rem auto;\n}\n.logo img {\n  display: inline-block;\n  max-width: 5rem;\n}\n\n'], ['\n\n.container {\n  margin: 2rem auto;\n  max-width: 30rem;\n  text-align: center;\n}\n\n.logo {\n  display: inline-block;\n  margin: 0 auto 1rem auto;\n}\n.logo img {\n  display: inline-block;\n  max-width: 5rem;\n}\n\n']);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 var css = require('csjs');
 module.exports = css(_templateObject);
 
-},{"csjs":18}],8:[function(require,module,exports){
+},{"csjs":19}],9:[function(require,module,exports){
 'use strict';
 
-var _templateObject = _taggedTemplateLiteral(['\n  <div className="system-sans-serif ', '">\n    <img className="', '" src="logo.svg" alt="Parity Logo" />\n    ', '\n    ', '\n    ', '\n  </div>\n'], ['\n  <div className="system-sans-serif ', '">\n    <img className="', '" src="logo.svg" alt="Parity Logo" />\n    ', '\n    ', '\n    ', '\n  </div>\n']);
+var _templateObject = _taggedTemplateLiteral(['\n  <div className="system-sans-serif ', '">\n    <a className="', '" href="https://parity.io/">\n    \t<img src="logo.svg" alt="Parity Logo" />\n    </a>\n    ', '\n    ', '\n    ', '\n  </div>\n'], ['\n  <div className="system-sans-serif ', '">\n    <a className="', '" href="https://parity.io/">\n    \t<img src="logo.svg" alt="Parity Logo" />\n    </a>\n    ', '\n    ', '\n    ', '\n  </div>\n']);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -232,7 +239,7 @@ var render = function render(state, actions) {
 
 module.exports = render;
 
-},{"./data":4,"./form":6,"./index.csjs.js":7,"./status":10,"yo-yo":47}],9:[function(require,module,exports){
+},{"./data":4,"./form":7,"./index.csjs.js":8,"./status":11,"yo-yo":48}],10:[function(require,module,exports){
 'use strict';
 
 var _templateObject = _taggedTemplateLiteral(['\n\n.spinner {\n  margin-top: 1rem;\n  display: inline-block;\n  width: 2em;\n  height: 2em;\n}\n\n.spinner > div {\n  width: 100%;\n  height: 100%;\n  background-color: #3498db;\n  border-radius: 100%;\n  -webkit-animation: spinning .6s infinite ease-out;\n  animation: spinning .6s infinite ease-out;\n}\n\n@keyframes spinning {\n  0% {\n    -webkit-transform: scale(0);\n    transform: scale(0);\n  }\n  30% {\n    opacity: 1;\n  }\n  100% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 0;\n  }\n}\n\n'], ['\n\n.spinner {\n  margin-top: 1rem;\n  display: inline-block;\n  width: 2em;\n  height: 2em;\n}\n\n.spinner > div {\n  width: 100%;\n  height: 100%;\n  background-color: #3498db;\n  border-radius: 100%;\n  -webkit-animation: spinning .6s infinite ease-out;\n  animation: spinning .6s infinite ease-out;\n}\n\n@keyframes spinning {\n  0% {\n    -webkit-transform: scale(0);\n    transform: scale(0);\n  }\n  30% {\n    opacity: 1;\n  }\n  100% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 0;\n  }\n}\n\n']);
@@ -242,7 +249,7 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 var css = require('csjs');
 module.exports = css(_templateObject);
 
-},{"csjs":18}],10:[function(require,module,exports){
+},{"csjs":19}],11:[function(require,module,exports){
 'use strict';
 
 var _templateObject = _taggedTemplateLiteral(['\n    <p class="notification error">', '</p>\n  '], ['\n    <p class="notification error">', '</p>\n  ']),
@@ -260,7 +267,7 @@ var render = function render(state, actions) {
 
 module.exports = render;
 
-},{"./status.csjs.js":9,"yo-yo":47}],11:[function(require,module,exports){
+},{"./status.csjs.js":10,"yo-yo":48}],12:[function(require,module,exports){
 'use strict';
 
 var _require = require('js-sha3'),
@@ -294,7 +301,7 @@ module.exports = {
   etherscanLink: etherscanLink
 };
 
-},{"js-sha3":35}],12:[function(require,module,exports){
+},{"js-sha3":36}],13:[function(require,module,exports){
 'use strict';
 
 var document = require('global/document');
@@ -427,10 +434,10 @@ module.exports = hyperx(belCreateElement);
 module.exports.default = module.exports;
 module.exports.createElement = belCreateElement;
 
-},{"global/document":29,"hyperx":32,"on-load":39}],13:[function(require,module,exports){
+},{"global/document":30,"hyperx":33,"on-load":40}],14:[function(require,module,exports){
 "use strict";
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 
 // shim for using process in browser
@@ -613,7 +620,7 @@ process.umask = function () {
     return 0;
 };
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 'use strict';
 
 var deselectCurrent = require('toggle-selection');
@@ -697,17 +704,17 @@ function copy(text, options) {
 
 module.exports = copy;
 
-},{"toggle-selection":45}],16:[function(require,module,exports){
+},{"toggle-selection":46}],17:[function(require,module,exports){
 'use strict';
 
 module.exports = require('./lib/csjs');
 
-},{"./lib/csjs":22}],17:[function(require,module,exports){
+},{"./lib/csjs":23}],18:[function(require,module,exports){
 'use strict';
 
 module.exports = require('./lib/get-css');
 
-},{"./lib/get-css":25}],18:[function(require,module,exports){
+},{"./lib/get-css":26}],19:[function(require,module,exports){
 'use strict';
 
 var csjs = require('./csjs');
@@ -716,7 +723,7 @@ module.exports = csjs;
 module.exports.csjs = csjs;
 module.exports.getCss = require('./get-css');
 
-},{"./csjs":16,"./get-css":17}],19:[function(require,module,exports){
+},{"./csjs":17,"./get-css":18}],20:[function(require,module,exports){
 'use strict';
 
 /**
@@ -738,7 +745,7 @@ module.exports = function encode(integer) {
   return str;
 };
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 
 var makeComposition = require('./composition').makeComposition;
@@ -783,7 +790,7 @@ function getClassChain(obj) {
   return acc;
 }
 
-},{"./composition":21}],21:[function(require,module,exports){
+},{"./composition":22}],22:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -851,7 +858,7 @@ function isComposition(value) {
  */
 function Composition() {}
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 'use strict';
 
 var extractExtends = require('./css-extract-extends');
@@ -930,7 +937,7 @@ function without(obj, unwanted) {
   }, {});
 }
 
-},{"./build-exports":20,"./composition":21,"./css-extract-extends":23,"./css-key":24,"./scopeify":28}],23:[function(require,module,exports){
+},{"./build-exports":21,"./composition":22,"./css-extract-extends":24,"./css-key":25,"./scopeify":29}],24:[function(require,module,exports){
 'use strict';
 
 var makeComposition = require('./composition').makeComposition;
@@ -983,7 +990,7 @@ function getClassName(str) {
   return trimmed[0] === '.' ? trimmed.substr(1) : trimmed;
 }
 
-},{"./composition":21}],24:[function(require,module,exports){
+},{"./composition":22}],25:[function(require,module,exports){
 'use strict';
 
 /**
@@ -993,7 +1000,7 @@ function getClassName(str) {
 
 module.exports = ' css ';
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 'use strict';
 
 var cssKey = require('./css-key');
@@ -1002,7 +1009,7 @@ module.exports = function getCss(csjs) {
   return csjs[cssKey];
 };
 
-},{"./css-key":24}],26:[function(require,module,exports){
+},{"./css-key":25}],27:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1020,7 +1027,7 @@ module.exports = function hashStr(str) {
   return hash >>> 0;
 };
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 'use strict';
 
 var encode = require('./base62-encode');
@@ -1034,7 +1041,7 @@ module.exports = function fileScoper(fileSrc) {
   };
 };
 
-},{"./base62-encode":19,"./hash-string":26}],28:[function(require,module,exports){
+},{"./base62-encode":20,"./hash-string":27}],29:[function(require,module,exports){
 'use strict';
 
 var fileScoper = require('./scoped-name');
@@ -1103,7 +1110,7 @@ function replaceAnimations(result) {
   return result;
 }
 
-},{"./scoped-name":27}],29:[function(require,module,exports){
+},{"./scoped-name":28}],30:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -1123,7 +1130,7 @@ if (typeof document !== 'undefined') {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"min-document":13}],30:[function(require,module,exports){
+},{"min-document":14}],31:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -1138,7 +1145,7 @@ if (typeof window !== "undefined") {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 'use strict';
 
 module.exports = attributeToProperty;
@@ -1161,7 +1168,7 @@ function attributeToProperty(h) {
   };
 }
 
-},{}],32:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -1414,7 +1421,7 @@ function selfClosing(tag) {
   return closeRE.test(tag);
 }
 
-},{"hyperscript-attribute-to-property":31}],33:[function(require,module,exports){
+},{"hyperscript-attribute-to-property":32}],34:[function(require,module,exports){
 'use strict';
 
 var numberIsNan = require('number-is-nan');
@@ -1423,7 +1430,7 @@ module.exports = Number.isFinite || function (val) {
 	return !(typeof val !== 'number' || numberIsNan(val) || val === Infinity || val === -Infinity);
 };
 
-},{"number-is-nan":38}],34:[function(require,module,exports){
+},{"number-is-nan":39}],35:[function(require,module,exports){
 'use strict';
 
 // the whatwg-fetch polyfill installs the fetch() function
@@ -1433,7 +1440,7 @@ module.exports = Number.isFinite || function (val) {
 require('whatwg-fetch');
 module.exports = self.fetch.bind(self);
 
-},{"whatwg-fetch":46}],35:[function(require,module,exports){
+},{"whatwg-fetch":47}],36:[function(require,module,exports){
 (function (process,global){
 'use strict';
 
@@ -1927,7 +1934,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 })();
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":14}],36:[function(require,module,exports){
+},{"_process":15}],37:[function(require,module,exports){
 'use strict';
 // Create a range object for efficently rendering strings to elements.
 
@@ -2583,7 +2590,7 @@ function morphdom(fromNode, toNode, options) {
 
 module.exports = morphdom;
 
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 'use strict';
 
 var numberIsFinite = require('is-finite');
@@ -2592,14 +2599,14 @@ module.exports = Number.isInteger || function (x) {
 	return numberIsFinite(x) && Math.floor(x) === x;
 };
 
-},{"is-finite":33}],38:[function(require,module,exports){
+},{"is-finite":34}],39:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function (x) {
 	return x !== x;
 };
 
-},{}],39:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 'use strict';
 
 /* global MutationObserver */
@@ -2690,7 +2697,7 @@ function eachMutation(nodes, fn) {
   }
 }
 
-},{"global/document":29,"global/window":30}],40:[function(require,module,exports){
+},{"global/document":30,"global/window":31}],41:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -2780,7 +2787,7 @@ var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{}],41:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -2867,13 +2874,13 @@ var objectKeys = Object.keys || function (obj) {
   return res;
 };
 
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 'use strict';
 
 exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
 
-},{"./decode":40,"./encode":41}],43:[function(require,module,exports){
+},{"./decode":41,"./encode":42}],44:[function(require,module,exports){
 /*
 * This package edit the url-formatter of rawgit.
 * The original source code is https://github.com/rgrove/rawgit/blob/master/public/js/url-formatter.js
@@ -2907,7 +2914,7 @@ module.exports = function (url) {
 	return result;
 };
 
-},{}],44:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 'use strict';
 
 var numberIsInteger = require('number-is-integer');
@@ -2932,7 +2939,7 @@ var fn = module.exports = round.bind(null, 'round');
 fn.up = round.bind(null, 'ceil');
 fn.down = round.bind(null, 'floor');
 
-},{"number-is-integer":37}],45:[function(require,module,exports){
+},{"number-is-integer":38}],46:[function(require,module,exports){
 'use strict';
 
 module.exports = function () {
@@ -2972,7 +2979,7 @@ module.exports = function () {
   };
 };
 
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 'use strict';
 
 (function (self) {
@@ -3429,7 +3436,7 @@ module.exports = function () {
   self.fetch.polyfill = true;
 })(typeof self !== 'undefined' ? self : undefined);
 
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 'use strict';
 
 var bel = require('bel'); // turns template tag into DOM elements
@@ -3471,7 +3478,7 @@ module.exports.update = function (fromNode, toNode, opts) {
   }
 };
 
-},{"./update-events.js":48,"bel":12,"morphdom":36}],48:[function(require,module,exports){
+},{"./update-events.js":49,"bel":13,"morphdom":37}],49:[function(require,module,exports){
 'use strict';
 
 module.exports = [
